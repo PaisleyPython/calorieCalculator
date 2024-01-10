@@ -23,5 +23,11 @@ class Temperature:
         return temp
 
 
-result = Temperature(country="uk", city="swansea")
-print(result.get())
+# result = Temperature(country="uk", city="swansea")
+# print(result.get())
+
+# ============================================================
+
+# This is required if the website doesn't allow python to query the data
+# headers = {'Accept-Language': "en-GB,en-US;q=0.9,en;q=0.8",
+#            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}

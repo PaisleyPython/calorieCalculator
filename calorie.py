@@ -4,32 +4,7 @@ from flask.views import MethodView
 from wtforms import Form, StringField, SubmitField
 from flask import Flask, render_template, request
 import requests
-from bs4 import BeautifulSoup
-from selectorlib import Extractor
-from pprint import pprint
-
-
-# This is required if the website doesn't allow python to query the data
-headers = {'Accept-Language': "en-GB,en-US;q=0.9,en;q=0.8",
-           'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
-# <div class="h2">3&nbsp;°C</div>
-
-URL = "https://www.timeanddate.com/weather/uk/swansea/"
-
-
-response = requests.get(URL)
-webpage = response.text
-
-extractor = Extractor.from_yaml_file(
-    "App-6-Project-Calorie-Webapp/temperature.yaml")
-temp = float(extractor.extract(webpage)["temp"][0])
-
-print(temp)
-
-
-# soup = BeautifulSoup(webpage, "html.parser")
-# print(response)
-
+from temperature import Temperature
 
 app = Flask(__name__)
 
@@ -43,11 +18,18 @@ class CalorieCalculator:
         self.age = age
 
     def calculate(self):
-        pass
-
-# @app.route("/"):
-# def
+        result = 10 * self.weight + 6.5 * self.height + 5 - self.temperature * 10
+        return result
 
 
-# app = CalorieCalculator("86", "186", "36", "10")
-# print(app)
+# country = input("Enter a Country: ")
+# city = input("Enter a City: ")
+# weight = int(input("Enter your Weight in kg: "))
+# height = int(input("Enter your height in CM: "))
+# age = int(input("Enter your age: "))
+
+if __name__ == "__main__":
+    temperature = Temperature(country="uk", city="swansea").get()
+    app = CalorieCalculator(weight=86, height=186,
+                            age=36, temperature=temperature)
+    print(app.calculate())

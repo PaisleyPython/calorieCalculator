@@ -5,13 +5,18 @@ h2 {
 }
 
 input[type=text] {
+    display: block;
+    text-align: center;
     width: 100%;
     padding: 8px 8px;
     margin: 10px 0;
 }
 
+
 input[type=submit]{
-    width: 100%;
+    display: inline-block;
+    text-align: center;
+    width: 21%;
     background-color: YellowGreen;
     color: White;
     padding: 12px 12px;
@@ -21,6 +26,7 @@ input[type=submit]{
 }
 
 body {
+
     background-color: Black;
     color: White;
     padding: 20px;
